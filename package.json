@@ -1,0 +1,10 @@
+{
+  "name": "tradingview-overlay-extension",
+  "private": true,
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}

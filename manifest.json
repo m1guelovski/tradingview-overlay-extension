@@ -2,8 +2,28 @@
   "manifest_version": 3,
   "name": "Currency Exposure",
   "version": "1.0.0",
-  "description": "Floating overlay showing open PnL grouped by quote currency on TradingView open positions.",
+  "description": "TradingView tool to visualize open PnL exposure grouped by currency. Analyze risk, identify weak currencies, and manage trades more effectively.",
   "permissions": ["storage"],
+  "host_permissions": ["https://www.tradingview.com/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Currency Exposure",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/utils/exposureUtils.js"],
+      "matches": ["*://www.tradingview.com/*"]
+    }
+  ],
   "content_scripts": [
     {
       "matches": ["*://www.tradingview.com/*"],

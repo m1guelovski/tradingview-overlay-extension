@@ -12,6 +12,7 @@ window.OverlayView = class OverlayView {
     this.hiddenReasonEl = null;
     this.minimizeBtn = null;
     this.closeBtn = null;
+    this.supportFooterBtn = null;
     this.reopenBtn = null;
     this.resizeHandleEl = null;
 
@@ -66,6 +67,11 @@ window.OverlayView = class OverlayView {
         <div class="tv-overlay-panel__rows" data-ui="groups">
           <div class="tv-overlay-panel__empty">No data</div>
         </div>
+
+        <footer class="tv-overlay-panel__footer">
+          <button type="button" class="tv-overlay-panel__footer-support" data-ui="support-footer">Support the project ☕</button>
+          <div class="tv-overlay-panel__footer-thanks">Thank you for supporting future updates.</div>
+        </footer>
       </div>
       <div class="tv-overlay-panel__resize-handle" data-ui="resize" aria-hidden="true"></div>
     `;
@@ -101,6 +107,7 @@ window.OverlayView = class OverlayView {
     this.totalPositionsEl = this.container.querySelector('[data-ui="totalCount"]');
     this.updatedAtEl = this.container.querySelector('[data-metric="updatedAt"]');
     this.hiddenReasonEl = this.container.querySelector('[data-ui="hiddenReason"]');
+    this.supportFooterBtn = this.container.querySelector('[data-ui="support-footer"]');
     this.minimizeBtn = this.container.querySelector('[data-ui="minimize"]');
     this.closeBtn = this.container.querySelector('[data-ui="close"]');
     this.resizeHandleEl = this.container.querySelector('[data-ui="resize"]');
@@ -133,7 +140,7 @@ window.OverlayView = class OverlayView {
       this.updatedAtEl.textContent = stale ? `${t} (stale)` : t;
     }
     if (this.hiddenReasonEl) {
-      this.hiddenReasonEl.textContent = stale && hiddenReason ? hiddenReason : "";
+      this.hiddenReasonEl.textContent = hiddenReason ? hiddenReason : "";
     }
 
     this.renderRows(groups);
@@ -259,6 +266,7 @@ window.OverlayView = class OverlayView {
       if (this.closed) return;
       if (e.button !== undefined && e.button !== 0) return;
       if (
+        e.target.closest("[data-ui='support-footer']") ||
         e.target.closest("[data-ui='minimize']") ||
         e.target.closest("[data-ui='close']") ||
         e.target.closest("[data-ui='resize']")
@@ -329,6 +337,11 @@ window.OverlayView = class OverlayView {
     window.addEventListener("mouseup", onPointerUp);
 
     // Controls
+    this.supportFooterBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open("https://buymeacoffee.com/m1guelovski", "_blank", "noopener,noreferrer");
+    });
     this.minimizeBtn?.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();

@@ -4,7 +4,7 @@
   right: 16px;
   left: auto;
   bottom: auto;
-  z-index: 2147483647;
+  z-index: 999999;
   width: 300px;
   min-width: 260px;
   max-width: 520px;
@@ -119,6 +119,39 @@
   padding-top: 4px;
   min-height: 0;
   flex: 1 1 auto;
+}
+
+.tv-overlay-panel__footer {
+  flex-shrink: 0;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  text-align: center;
+}
+
+.tv-overlay-panel__footer-support {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 10px;
+  color: rgba(148, 163, 184, 0.72);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tv-overlay-panel__footer-support:hover {
+  color: rgba(203, 213, 225, 0.85);
+}
+
+.tv-overlay-panel__footer-thanks {
+  margin-top: 3px;
+  font-size: 9px;
+  line-height: 1.25;
+  color: rgba(148, 163, 184, 0.45);
 }
 
 .tv-overlay-panel__empty {
@@ -236,7 +269,7 @@
   position: fixed;
   top: 20px;
   right: 16px;
-  z-index: 2147483647;
+  z-index: 999999;
   width: 42px;
   height: 32px;
   border: 1px solid rgba(148, 163, 184, 0.25);

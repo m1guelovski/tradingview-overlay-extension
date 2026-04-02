@@ -2,6 +2,17 @@
 
 Production-ready Chrome Extension (Manifest V3) for TradingView that overlays live open-position exposure grouped by quote currency.
 
+## Why use this?
+
+TradingView does not show your exposure grouped by currency.
+
+Currency Exposure solves that by helping you instantly:
+
+* identify your biggest losing currencies
+* detect concentration risk
+* expand into pairs and individual open positions
+* make faster risk-management decisions
+
 ## What It Does
 
 - Injects a compact floating panel on TradingView pages.
@@ -69,4 +80,14 @@ src/
 - [ ] Validate behavior on multiple TradingView layouts
 - [ ] Review privacy statement (no external data collection)
 - [ ] Package and upload through Chrome Web Store Developer Dashboard
+
+## Disclaimer
+
+This extension is provided for informational purposes only and does not constitute financial advice.
+
+## Support
+
+If Currency Exposure helps you, you can support the project here:
+
+https://buymeacoffee.com/m1guelovski
 

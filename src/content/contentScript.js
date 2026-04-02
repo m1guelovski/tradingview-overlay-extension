@@ -1,11 +1,14 @@
-let overlayInstance = null;
+(async () => {
+  const { extractQuoteCurrency } = await import(chrome.runtime.getURL("src/utils/exposureUtils.js"));
 
-const DEBUG_PREFIX = "[Currency Exposure]";
+  let overlayInstance = null;
+
+  const DEBUG_PREFIX = "[Currency Exposure]";
 
 const REGEX = {
   symbolLettersOnly: /[^A-Za-z]/g,
-  // Accept symbols with at least 6 uppercase letters (forex + common crypto tickers).
-  symbol: /^[A-Z]{6,}$/,
+  // Accept symbols with at least 5 uppercase letters (forex + common crypto tickers).
+  symbol: /^[A-Z]{5,}$/,
   // Profit numbers like -446.22 or 5963.09 (ignore currency formatting).
   profitNumber: /[+\-−]?\s*\d[\d,]*\.?\d*/,
 
@@ -17,6 +20,7 @@ let lastNoRootLogAt = 0;
 let lastSignature = null;
 let lastModel = null;
 let lastUpdatedAt = null;
+let pollIntervalId = null;
 
 function isVisible(el) {
   if (!el) return false;
@@ -31,20 +35,6 @@ function cleanSymbol(rawText) {
     .toUpperCase();
   if (!REGEX.symbol.test(cleaned)) return null;
   return cleaned;
-}
-
-function getQuoteCurrency(symbol) {
-  if (!symbol) return "OTHER";
-
-  // Crypto common suffixes
-  if (symbol.endsWith("USDT")) return "USDT";
-  if (symbol.endsWith("USDC")) return "USDC";
-  if (symbol.endsWith("BUSD")) return "BUSD";
-
-  // Standard forex (EURUSD, GBPJPY, etc.)
-  if (symbol.length === 6) return symbol.slice(-3);
-
-  return "OTHER";
 }
 
 function parseSignedNumber(rawText) {
@@ -163,7 +153,7 @@ function groupByQuoteCurrency(rows) {
   for (const row of rows) {
     if (!row?.symbol) continue;
     if (typeof row.profit !== "number" || Number.isNaN(row.profit)) continue;
-    const quote = getQuoteCurrency(row.symbol);
+    const quote = extractQuoteCurrency(row.symbol);
 
     if (!map.has(quote)) {
       map.set(quote, {
@@ -251,13 +241,13 @@ console.log("Currency Exposure loaded");
 
 ensureOverlay();
 
-// Update OPEN POSITIONS grouping near-real-time (simple polling, 1s).
-setInterval(() => {
+function runUpdate() {
   if (!overlayInstance) {
     ensureOverlay();
     if (!overlayInstance) return;
   }
 
+  const tableRoot = getOpenPositionsTableRoot();
   const rows = extractOpenPositionRows();
   const stale = rows.length === 0 && Boolean(lastModel);
 
@@ -266,6 +256,14 @@ setInterval(() => {
     overlayInstance.setModel(lastModel, lastUpdatedAt, {
       stale: true,
       hiddenReason: "Broker panel hidden"
+    });
+    return;
+  }
+
+  if (!tableRoot && !lastModel) {
+    overlayInstance.setModel({ currencyGroups: [] }, new Date(), {
+      stale: false,
+      hiddenReason: "Unable to read positions"
     });
     return;
   }
@@ -279,7 +277,30 @@ setInterval(() => {
   lastUpdatedAt = new Date();
 
   overlayInstance.setModel(lastModel, lastUpdatedAt, {
-    stale: false
+    stale: false,
+    hiddenReason: ""
   });
-}, 1000);
+}
 
+function stopLoop() {
+  if (pollIntervalId !== null) {
+    clearInterval(pollIntervalId);
+    pollIntervalId = null;
+  }
+}
+
+function startLoop() {
+  stopLoop();
+  runUpdate();
+  pollIntervalId = setInterval(runUpdate, 1000);
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") startLoop();
+  else stopLoop();
+});
+
+if (document.visibilityState === "visible") startLoop();
+else stopLoop();
+
+})();
