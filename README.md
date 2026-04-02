@@ -1,5 +1,7 @@
 # Currency Exposure
 
+TradingView extension to visualize open PnL grouped by currency exposure.
+
 Production-ready Chrome Extension (Manifest V3) for TradingView that overlays live open-position exposure grouped by quote currency.
 
 ## Why use this?
@@ -47,19 +49,22 @@ Currency Exposure solves that by helping you instantly:
   - Minimized state
   - Size (width/height)
 
-## Project Structure
+## Project structure
 
 ```text
 manifest.json
+icons/
 src/
-  content/
-    contentScript.js
-    overlay/
-      OverlayView.js
-      overlayStyles.css
+tests/
+README.md
+privacy-policy.md
+package.json
+CHANGELOG.md
 ```
 
-## Local Installation (Chrome)
+`src/` contains the content script, overlay (`OverlayView.js`, `overlayStyles.css`), and shared helpers (`utils/exposureUtils.js`).
+
+## Local installation (Chrome)
 
 1. Open `chrome://extensions`
 2. Enable **Developer mode**
@@ -73,7 +78,7 @@ src/
 - No strategy-specific risk rules are applied in the extension.
 - If the broker panel is hidden/minimized, the UI keeps last known values and marks timestamp as stale.
 
-## Publishing Checklist (Chrome Web Store)
+## Publishing checklist (Chrome Web Store)
 
 - [ ] Confirm extension name/version in `manifest.json`
 - [ ] Provide extension icons (`16/48/128`) and screenshots
@@ -83,11 +88,14 @@ src/
 
 ## Disclaimer
 
-This extension is provided for informational purposes only and does not constitute financial advice.
+This tool is for informational purposes only and does not constitute financial advice.
 
 ## Support
 
-If Currency Exposure helps you, you can support the project here:
+If Currency Exposure helps you, consider supporting the project:
 
 https://buymeacoffee.com/m1guelovski
 
+## Links
+
+* Support: https://buymeacoffee.com/m1guelovski

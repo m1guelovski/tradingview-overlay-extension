@@ -237,8 +237,6 @@ function ensureOverlay() {
   overlayInstance.setModel(null, null);
 }
 
-console.log("Currency Exposure loaded");
-
 ensureOverlay();
 
 function runUpdate() {

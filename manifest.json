@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Currency Exposure",
+  "short_name": "Currency Exposure",
   "version": "1.0.0",
   "description": "TradingView tool to visualize open PnL exposure grouped by currency. Analyze risk, identify weak currencies, and manage trades more effectively.",
   "permissions": ["storage"],
