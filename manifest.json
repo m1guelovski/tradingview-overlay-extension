@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Quote Exposure",
+  "name": "Currency Exposure",
   "version": "1.0.0",
-  "description": "Floating overlay showing open PnL grouped by quote currency on TradingView.",
+  "description": "Floating overlay showing open PnL grouped by quote currency on TradingView open positions.",
   "permissions": ["storage"],
   "content_scripts": [
     {

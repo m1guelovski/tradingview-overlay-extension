@@ -1,11 +1,11 @@
 let overlayInstance = null;
 
-const DEBUG_PREFIX = "[Quote Exposure]";
+const DEBUG_PREFIX = "[Currency Exposure]";
 
 const REGEX = {
   symbolLettersOnly: /[^A-Za-z]/g,
-  // Forex symbols in your examples are 6 letters (EURJPY).
-  symbol: /^[A-Z]{6}$/,
+  // Accept symbols with at least 6 uppercase letters (forex + common crypto tickers).
+  symbol: /^[A-Z]{6,}$/,
   // Profit numbers like -446.22 or 5963.09 (ignore currency formatting).
   profitNumber: /[+\-−]?\s*\d[\d,]*\.?\d*/,
 
@@ -16,6 +16,7 @@ const REGEX = {
 let lastNoRootLogAt = 0;
 let lastSignature = null;
 let lastModel = null;
+let lastUpdatedAt = null;
 
 function isVisible(el) {
   if (!el) return false;
@@ -30,6 +31,20 @@ function cleanSymbol(rawText) {
     .toUpperCase();
   if (!REGEX.symbol.test(cleaned)) return null;
   return cleaned;
+}
+
+function getQuoteCurrency(symbol) {
+  if (!symbol) return "OTHER";
+
+  // Crypto common suffixes
+  if (symbol.endsWith("USDT")) return "USDT";
+  if (symbol.endsWith("USDC")) return "USDC";
+  if (symbol.endsWith("BUSD")) return "BUSD";
+
+  // Standard forex (EURUSD, GBPJPY, etc.)
+  if (symbol.length === 6) return symbol.slice(-3);
+
+  return "OTHER";
 }
 
 function parseSignedNumber(rawText) {
@@ -148,10 +163,7 @@ function groupByQuoteCurrency(rows) {
   for (const row of rows) {
     if (!row?.symbol) continue;
     if (typeof row.profit !== "number" || Number.isNaN(row.profit)) continue;
-
-    // Quote currency = last 3 characters of the symbol (per your requirement).
-    const quote = row.symbol.slice(-3);
-    if (!quote || quote.length !== 3) continue;
+    const quote = getQuoteCurrency(row.symbol);
 
     if (!map.has(quote)) {
       map.set(quote, {
@@ -235,7 +247,7 @@ function ensureOverlay() {
   overlayInstance.setModel(null, null);
 }
 
-console.log("Quote Exposure loaded");
+console.log("Currency Exposure loaded");
 
 ensureOverlay();
 
@@ -247,13 +259,27 @@ setInterval(() => {
   }
 
   const rows = extractOpenPositionRows();
+  const stale = rows.length === 0 && Boolean(lastModel);
+
+  // Keep the last valid dataset if broker panel is minimized/hidden.
+  if (stale) {
+    overlayInstance.setModel(lastModel, lastUpdatedAt, {
+      stale: true,
+      hiddenReason: "Broker panel hidden"
+    });
+    return;
+  }
+
   const signature = computeSignature(rows);
   if (signature === lastSignature) return;
   lastSignature = signature;
 
   const currencyGroups = groupByQuoteCurrency(rows);
   lastModel = { currencyGroups };
+  lastUpdatedAt = new Date();
 
-  overlayInstance.setModel(lastModel, new Date());
+  overlayInstance.setModel(lastModel, lastUpdatedAt, {
+    stale: false
+  });
 }, 1000);
 

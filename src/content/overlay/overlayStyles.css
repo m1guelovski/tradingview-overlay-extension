@@ -75,6 +75,10 @@
   font-size: 11px;
 }
 
+.tv-overlay-panel__hidden-reason {
+  min-height: 14px;
+}
+
 .tv-overlay-panel__muted {
   color: rgba(226, 232, 240, 0.62);
 }
@@ -126,12 +130,12 @@
 
 .tv-overlay-panel__row-grid--currency:hover,
 .tv-overlay-panel__row-grid--pair:hover {
-  background: rgba(148, 163, 184, 0.06);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .tv-overlay-panel__row-grid--worst {
-  border-left: 2px solid rgba(248, 113, 113, 0.45);
-  padding-left: 6px;
+  border-left: 3px solid #ff4d4f;
+  padding-left: 5px;
 }
 
 .tv-overlay-panel__col-label {
@@ -189,6 +193,10 @@
   font-size: 11px;
   font-weight: 800;
   color: rgba(226, 232, 240, 0.52);
+}
+
+.tv-overlay-panel__block {
+  margin-bottom: 4px;
 }
 
 .tv-overlay-panel__num--neg-strong {

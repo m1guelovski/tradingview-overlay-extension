@@ -9,6 +9,7 @@ window.OverlayView = class OverlayView {
     this.totalPnLEl = null;
     this.totalPositionsEl = null;
     this.updatedAtEl = null;
+    this.hiddenReasonEl = null;
     this.minimizeBtn = null;
     this.closeBtn = null;
     this.reopenBtn = null;
@@ -28,7 +29,7 @@ window.OverlayView = class OverlayView {
     this.container.setAttribute("aria-live", "polite");
     this.container.innerHTML = `
       <div class="tv-overlay-panel__header" data-ui="header">
-        <div class="tv-overlay-panel__title">Quote Exposure</div>
+        <div class="tv-overlay-panel__title">Currency Exposure</div>
         <div class="tv-overlay-panel__header-actions">
           <button type="button" class="tv-overlay-panel__icon-btn" data-ui="minimize" aria-label="Minimize panel">—</button>
           <button type="button" class="tv-overlay-panel__icon-btn" data-ui="close" aria-label="Close panel">×</button>
@@ -42,18 +43,22 @@ window.OverlayView = class OverlayView {
             <span class="tv-overlay-panel__total-pnl tv-overlay-panel__num--neu" data-ui="totalPnl">No data</span>
           </div>
           <div class="tv-overlay-panel__totals-row">
-            <span class="tv-overlay-panel__muted" data-ui="totalCount">0 positions</span>
+            <span class="tv-overlay-panel__muted">Open Positions</span>
+            <span class="tv-overlay-panel__muted" data-ui="totalCount">0</span>
           </div>
           <div class="tv-overlay-panel__totals-row">
             <span class="tv-overlay-panel__muted">Updated</span>
             <span class="tv-overlay-panel__muted" data-metric="updatedAt">—</span>
           </div>
+          <div class="tv-overlay-panel__totals-row tv-overlay-panel__hidden-reason" data-ui="hiddenReasonRow">
+            <span class="tv-overlay-panel__muted" data-ui="hiddenReason"> </span>
+          </div>
         </div>
 
         <div class="tv-overlay-panel__table-head">
-          <div class="tv-overlay-panel__col-label">Label</div>
+          <div class="tv-overlay-panel__col-label">Currency</div>
           <div class="tv-overlay-panel__col-pnl">PnL</div>
-          <div class="tv-overlay-panel__col-count">#</div>
+          <div class="tv-overlay-panel__col-count">Positions</div>
         </div>
 
         <div class="tv-overlay-panel__rows" data-ui="groups">
@@ -92,13 +97,16 @@ window.OverlayView = class OverlayView {
     this.totalPnLEl = this.container.querySelector('[data-ui="totalPnl"]');
     this.totalPositionsEl = this.container.querySelector('[data-ui="totalCount"]');
     this.updatedAtEl = this.container.querySelector('[data-metric="updatedAt"]');
+    this.hiddenReasonEl = this.container.querySelector('[data-ui="hiddenReason"]');
     this.minimizeBtn = this.container.querySelector('[data-ui="minimize"]');
     this.closeBtn = this.container.querySelector('[data-ui="close"]');
   }
 
-  setModel(model, updatedAt) {
+  setModel(model, updatedAt, state = {}) {
     this.lastModel = model;
     const groups = Array.isArray(model?.currencyGroups) ? model.currencyGroups : [];
+    const stale = Boolean(state?.stale);
+    const hiddenReason = state?.hiddenReason || "";
 
     const totalPnL = groups.reduce((sum, g) => sum + (Number(g.totalProfit) || 0), 0);
     const totalCount = groups.reduce((sum, g) => sum + (Number(g.count) || 0), 0);
@@ -112,13 +120,16 @@ window.OverlayView = class OverlayView {
       this.totalPnLEl.className = `tv-overlay-panel__total-pnl ${this.pnlClass(totalPnL)}`;
     }
     if (this.totalPositionsEl) {
-      this.totalPositionsEl.textContent = `${totalCount} position${totalCount === 1 ? "" : "s"}`;
+      this.totalPositionsEl.textContent = `${totalCount}`;
     }
     if (this.updatedAtEl) {
-      this.updatedAtEl.textContent =
-        updatedAt instanceof Date && !Number.isNaN(updatedAt.getTime())
-          ? updatedAt.toLocaleTimeString()
-          : "—";
+      const t = updatedAt instanceof Date && !Number.isNaN(updatedAt.getTime())
+        ? updatedAt.toLocaleTimeString()
+        : "—";
+      this.updatedAtEl.textContent = stale ? `${t} (stale)` : t;
+    }
+    if (this.hiddenReasonEl) {
+      this.hiddenReasonEl.textContent = stale && hiddenReason ? hiddenReason : "";
     }
 
     this.renderRows(groups);
@@ -345,7 +356,7 @@ window.OverlayView = class OverlayView {
     btn.className = "tv-overlay-reopen-btn";
     btn.type = "button";
     btn.textContent = "TV";
-    btn.setAttribute("aria-label", "Reopen Quote Exposure panel");
+    btn.setAttribute("aria-label", "Reopen Currency Exposure panel");
     btn.style.display = "none";
     this.parent.appendChild(btn);
     this.reopenBtn = btn;
