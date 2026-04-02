@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Quote Exposure",
+  "version": "1.0.0",
+  "description": "Floating overlay showing open PnL grouped by quote currency on TradingView.",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://www.tradingview.com/*"],
+      "js": ["src/content/overlay/OverlayView.js", "src/content/contentScript.js"],
+      "css": ["src/content/overlay/overlayStyles.css"],
+      "run_at": "document_end"
+    }
+  ]
+}
+

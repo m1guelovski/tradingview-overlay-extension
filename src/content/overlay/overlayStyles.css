@@ -1,0 +1,224 @@
+#tv-overlay-panel {
+  position: fixed;
+  top: 20px;
+  right: 16px;
+  left: auto;
+  bottom: auto;
+  z-index: 2147483647;
+  width: 300px;
+
+  background: rgba(12, 14, 18, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+
+  color: #e2e8f0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.tv-overlay-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  cursor: move;
+}
+
+.tv-overlay-panel__title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+.tv-overlay-panel__header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.tv-overlay-panel__icon-btn {
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.65);
+  color: rgba(226, 232, 240, 0.9);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tv-overlay-panel__icon-btn:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.tv-overlay-panel__content {
+  padding: 10px 12px 12px;
+}
+
+.tv-overlay-panel__totals {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.tv-overlay-panel__totals-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 11px;
+}
+
+.tv-overlay-panel__muted {
+  color: rgba(226, 232, 240, 0.62);
+}
+
+.tv-overlay-panel__total-pnl {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.tv-overlay-panel__table-head {
+  display: grid;
+  grid-template-columns: 1fr 80px 40px;
+  gap: 8px;
+  padding: 4px 0 6px;
+  font-size: 10px;
+  color: rgba(226, 232, 240, 0.5);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.tv-overlay-panel__rows {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-top: 4px;
+}
+
+.tv-overlay-panel__empty {
+  padding: 8px 0;
+  font-size: 12px;
+  color: rgba(226, 232, 240, 0.62);
+}
+
+.tv-overlay-panel__empty--nested {
+  padding-left: 12px;
+}
+
+.tv-overlay-panel__row-grid {
+  display: grid;
+  grid-template-columns: 1fr 80px 40px;
+  gap: 8px;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.tv-overlay-panel__row-grid--currency,
+.tv-overlay-panel__row-grid--pair {
+  cursor: pointer;
+}
+
+.tv-overlay-panel__row-grid--currency:hover,
+.tv-overlay-panel__row-grid--pair:hover {
+  background: rgba(148, 163, 184, 0.06);
+}
+
+.tv-overlay-panel__row-grid--worst {
+  border-left: 2px solid rgba(248, 113, 113, 0.45);
+  padding-left: 6px;
+}
+
+.tv-overlay-panel__col-label {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tv-overlay-panel__col-pnl {
+  text-align: right;
+}
+
+.tv-overlay-panel__col-count {
+  text-align: right;
+}
+
+.tv-overlay-panel__caret {
+  display: inline-block;
+  width: 14px;
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.tv-overlay-panel__label-main {
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+.tv-overlay-panel__label-sub {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.tv-overlay-panel__label-pos {
+  font-size: 11px;
+  color: rgba(226, 232, 240, 0.64);
+}
+
+.tv-overlay-panel__indent-pair {
+  padding-left: 12px;
+}
+
+.tv-overlay-panel__indent-pos {
+  padding-left: 24px;
+}
+
+.tv-overlay-panel__pnl {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.tv-overlay-panel__count {
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(226, 232, 240, 0.52);
+}
+
+.tv-overlay-panel__num--neg-strong {
+  color: #ef4444;
+}
+
+.tv-overlay-panel__num--neg-soft {
+  color: #f87171;
+}
+
+.tv-overlay-panel__num--neu {
+  color: rgba(226, 232, 240, 0.8);
+}
+
+.tv-overlay-panel__num--pos {
+  color: #34d399;
+}
+
+.tv-overlay-reopen-btn {
+  position: fixed;
+  top: 20px;
+  right: 16px;
+  z-index: 2147483647;
+  width: 42px;
+  height: 32px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 10px;
+  background: rgba(12, 14, 18, 0.92);
+  color: rgba(226, 232, 240, 0.95);
+  font-weight: 900;
+  cursor: pointer;
+}
+
