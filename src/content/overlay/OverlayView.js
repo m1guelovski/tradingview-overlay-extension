@@ -13,9 +13,11 @@ window.OverlayView = class OverlayView {
     this.minimizeBtn = null;
     this.closeBtn = null;
     this.reopenBtn = null;
+    this.resizeHandleEl = null;
 
     this.minimized = false;
     this.closed = false;
+    this.hasCustomSize = false;
 
     this.expandedCurrencies = new Set();
     this.expandedPairs = new Set(); // `${currency}::${symbol}`
@@ -65,6 +67,7 @@ window.OverlayView = class OverlayView {
           <div class="tv-overlay-panel__empty">No data</div>
         </div>
       </div>
+      <div class="tv-overlay-panel__resize-handle" data-ui="resize" aria-hidden="true"></div>
     `;
 
     this.parent.appendChild(this.container);
@@ -100,6 +103,7 @@ window.OverlayView = class OverlayView {
     this.hiddenReasonEl = this.container.querySelector('[data-ui="hiddenReason"]');
     this.minimizeBtn = this.container.querySelector('[data-ui="minimize"]');
     this.closeBtn = this.container.querySelector('[data-ui="close"]');
+    this.resizeHandleEl = this.container.querySelector('[data-ui="resize"]');
   }
 
   setModel(model, updatedAt, state = {}) {
@@ -250,16 +254,50 @@ window.OverlayView = class OverlayView {
 
     // Drag
     let dragState = null;
+    let resizeState = null;
     const onPointerDown = (e) => {
       if (this.closed) return;
       if (e.button !== undefined && e.button !== 0) return;
-      if (e.target.closest("[data-ui='minimize']") || e.target.closest("[data-ui='close']")) return;
+      if (
+        e.target.closest("[data-ui='minimize']") ||
+        e.target.closest("[data-ui='close']") ||
+        e.target.closest("[data-ui='resize']")
+      ) return;
 
       const rect = this.container.getBoundingClientRect();
       dragState = { offsetX: e.clientX - rect.left, offsetY: e.clientY - rect.top };
       e.preventDefault();
     };
+    const onResizeDown = (e) => {
+      if (this.closed) return;
+      if (e.button !== undefined && e.button !== 0) return;
+      const rect = this.container.getBoundingClientRect();
+      resizeState = {
+        startX: e.clientX,
+        startY: e.clientY,
+        startW: rect.width,
+        startH: rect.height
+      };
+      e.preventDefault();
+      e.stopPropagation();
+    };
     const onPointerMove = (e) => {
+      if (resizeState) {
+        const dx = e.clientX - resizeState.startX;
+        const dy = e.clientY - resizeState.startY;
+        const minW = 260;
+        const maxW = 520;
+        const minH = 220;
+        const maxH = Math.floor(window.innerHeight * 0.8);
+
+        const nextW = Math.max(minW, Math.min(resizeState.startW + dx, maxW));
+        const nextH = Math.max(minH, Math.min(resizeState.startH + dy, maxH));
+        this.container.style.width = `${nextW}px`;
+        this.container.style.height = `${nextH}px`;
+        this.hasCustomSize = true;
+        return;
+      }
+
       if (!dragState) return;
       const margin = 8;
       const w = this.container.offsetWidth;
@@ -274,11 +312,19 @@ window.OverlayView = class OverlayView {
       this.container.style.bottom = "auto";
     };
     const onPointerUp = () => {
-      if (!dragState) return;
-      dragState = null;
-      this.saveSettings();
+      let changed = false;
+      if (dragState) {
+        dragState = null;
+        changed = true;
+      }
+      if (resizeState) {
+        resizeState = null;
+        changed = true;
+      }
+      if (changed) this.saveSettings();
     };
     this.headerEl?.addEventListener("mousedown", onPointerDown);
+    this.resizeHandleEl?.addEventListener("mousedown", onResizeDown);
     window.addEventListener("mousemove", onPointerMove);
     window.addEventListener("mouseup", onPointerUp);
 
@@ -364,14 +410,26 @@ window.OverlayView = class OverlayView {
 
   loadSettingsAndApply() {
     try {
-      chrome.storage?.local?.get(["panelPosition", "minimized"], (res) => {
+      chrome.storage?.local?.get(["panelPosition", "panelSize", "minimized"], (res) => {
         const panelPosition = res?.panelPosition || null;
+        const panelSize = res?.panelSize || null;
         const minimized = Boolean(res?.minimized);
         if (panelPosition && typeof panelPosition.left === "number" && typeof panelPosition.top === "number") {
           this.container.style.left = `${panelPosition.left}px`;
           this.container.style.top = `${panelPosition.top}px`;
           this.container.style.right = "auto";
           this.container.style.bottom = "auto";
+        }
+        if (panelSize && typeof panelSize.width === "number" && typeof panelSize.height === "number") {
+          const minW = 260;
+          const maxW = 520;
+          const minH = 220;
+          const maxH = Math.floor(window.innerHeight * 0.8);
+          const w = Math.max(minW, Math.min(panelSize.width, maxW));
+          const h = Math.max(minH, Math.min(panelSize.height, maxH));
+          this.container.style.width = `${w}px`;
+          this.container.style.height = `${h}px`;
+          this.hasCustomSize = true;
         }
         this.setMinimized(minimized);
       });
@@ -387,6 +445,12 @@ window.OverlayView = class OverlayView {
       const payload = { minimized: this.minimized };
       if (Number.isFinite(left) && Number.isFinite(top)) {
         payload.panelPosition = { left, top };
+      }
+      if (this.hasCustomSize) {
+        payload.panelSize = {
+          width: this.container.offsetWidth,
+          height: this.container.offsetHeight
+        };
       }
       chrome.storage?.local?.set(payload, () => {});
     } catch (e) {

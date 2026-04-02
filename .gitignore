@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node artifacts
+node_modules/
+dist/
+build/
+
+# Env
+.env
+.env.*
+
+# Packaging artifacts
+*.zip
+*.crx
+
