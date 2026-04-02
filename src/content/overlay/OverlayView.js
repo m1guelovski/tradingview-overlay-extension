@@ -375,6 +375,7 @@ window.OverlayView = class OverlayView {
 
   setMinimized(next) {
     this.minimized = Boolean(next);
+    this.container?.classList.toggle("tv-overlay-panel--minimized", this.minimized);
     if (this.contentEl) this.contentEl.style.display = this.minimized ? "none" : "";
     if (this.minimizeBtn) this.minimizeBtn.textContent = this.minimized ? "+" : "—";
     this.saveSettings();

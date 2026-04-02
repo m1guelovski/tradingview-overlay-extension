@@ -25,6 +25,11 @@
   pointer-events: auto;
 }
 
+#tv-overlay-panel.tv-overlay-panel--minimized {
+  min-height: 0;
+  height: auto !important;
+}
+
 .tv-overlay-panel__header {
   display: flex;
   align-items: center;
