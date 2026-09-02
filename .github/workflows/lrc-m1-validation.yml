@@ -1,0 +1,42 @@
+name: Temporary LRC M1 Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'research/**'
+      - '.github/workflows/lrc-m1-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore public M1 cache
+        uses: actions/cache@v4
+        with:
+          path: research/cache/fxcm
+          key: fxcm-public-m1-weekly-v1
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pandas numpy requests xlsxwriter
+      - name: Calibrate against 2026 execution window
+        run: python research/calibrate_2026.py
+      - name: Upload calibration
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lrc-2026-calibration
+          path: research/output2026/**
+          if-no-files-found: warn
+          retention-days: 3
