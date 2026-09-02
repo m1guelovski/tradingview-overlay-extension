@@ -29,7 +29,7 @@ jobs:
           path: research/cache/fxcm
           key: fxcm-public-m1-weekly-v1
       - name: Install dependencies
-        run: python -m pip install --upgrade pip pandas numpy requests xlsxwriter
+        run: python -m pip install --upgrade pip pandas numpy requests xlsxwriter numba
       - name: Run M1 validation
         run: python research/lrc_m1_validation.py
       - name: Upload results and diagnostics
