@@ -40,6 +40,11 @@ bundle = build_year_bundle(2026)
 start = int(pd.Timestamp("2026-06-18 00:00:00", tz="UTC").value)
 end = int(pd.Timestamp("2026-08-01 00:00:00", tz="UTC").value)
 
+columns = [
+    "position_id", "setup_id", "symbol", "side", "label", "tier",
+    "setup_start", "entry_time", "entry_price", "target",
+    "natural_exit_time", "natural_exit_price", "forced_end",
+]
 rows = []
 for cp in bundle.candidates.values():
     if start <= cp.entry_ns < end:
@@ -58,13 +63,42 @@ for cp in bundle.candidates.values():
             "natural_exit_price": cp.natural_exit_price,
             "forced_end": cp.forced_end,
         })
-pd.DataFrame(rows).sort_values(["entry_time", "symbol", "label"]).to_csv(out / "candidate_entries_2026.csv", index=False)
-pd.DataFrame(bundle.coverage).to_csv(out / "coverage_2026.csv", index=False)
-pd.DataFrame(bundle.setup_summary).to_csv(out / "setups_2026.csv", index=False)
-(out / "summary_2026.txt").write_text(
-    f"candidate_entries_jun18_jul31={len(rows)}\n"
-    f"all_candidates={len(bundle.candidates)}\n"
-    f"all_events={len(bundle.events)}\n",
-    encoding="utf-8",
-)
+
+cand = pd.DataFrame(rows, columns=columns)
+if not cand.empty:
+    cand = cand.sort_values(["entry_time", "symbol", "label"])
+cand.to_csv(out / "candidate_entries_2026.csv", index=False)
+
+coverage = pd.DataFrame(bundle.coverage)
+setups = pd.DataFrame(bundle.setup_summary)
+coverage.to_csv(out / "coverage_2026.csv", index=False)
+setups.to_csv(out / "setups_2026.csv", index=False)
+
+all_entry_ns = [cp.entry_ns for cp in bundle.candidates.values()]
+all_setup_ns = [s.get("start_ns") for s in bundle.setup_summary if s.get("start_ns") is not None]
+summary = [
+    f"candidate_entries_jun18_jul31={len(rows)}",
+    f"all_candidates={len(bundle.candidates)}",
+    f"all_events={len(bundle.events)}",
+    f"all_setups={len(bundle.setup_summary)}",
+    f"coverage_ok={(coverage.status == 'ok').sum() if 'status' in coverage else 0}",
+]
+if all_entry_ns:
+    summary += [
+        f"candidate_min={pd.Timestamp(min(all_entry_ns), tz='UTC')}",
+        f"candidate_max={pd.Timestamp(max(all_entry_ns), tz='UTC')}",
+    ]
+if all_setup_ns:
+    summary += [
+        f"setup_min={pd.Timestamp(min(all_setup_ns), tz='UTC')}",
+        f"setup_max={pd.Timestamp(max(all_setup_ns), tz='UTC')}",
+    ]
+if not coverage.empty:
+    for _, row in coverage.iterrows():
+        summary.append(
+            f"coverage:{row.get('symbol')}:{row.get('status')}:rows={row.get('rows')}:"
+            f"first={row.get('first')}:last={row.get('last')}:setups={row.get('setups')}:candidates={row.get('candidate_positions')}"
+        )
+
+(out / "summary_2026.txt").write_text("\n".join(summary) + "\n", encoding="utf-8")
 print((out / "summary_2026.txt").read_text(), flush=True)
