@@ -25,4 +25,21 @@ text = text.replace(
     'mark30 = pd.date_range(start, extension_end, freq="30min", inclusive="left").astype("int64").to_numpy()',
     'mark30 = pd.date_range(start, extension_end, freq="30min", inclusive="left").to_numpy(dtype="datetime64[ns]").astype("int64")',
 )
+text = text.replace(
+    'if __name__ == "__main__":\n    main()',
+    'if False:\n    main()',
+)
 exec(compile(text, "lrc_m1_validation_full.py", "exec"), globals())
+
+fast_payload = (HERE / "payload" / "fast_eventgen.txt").read_text(encoding="utf-8").strip()
+fast_source = zlib.decompress(base64.b64decode(fast_payload))
+fast_expected = "b1ffcd319b31bfce2c64f953efcb75126467242066fd8c1a6dfa78103de2e4e3"
+fast_actual = hashlib.sha256(fast_source).hexdigest()
+if fast_actual != fast_expected:
+    raise RuntimeError(f"Fast-generator checksum mismatch: {fast_actual}")
+exec(compile(fast_source, "fast_eventgen.py", "exec"), globals())
+
+def generate_candidate_events(data, year):
+    return generate_candidate_events_fast(data, year, globals())
+
+main()
