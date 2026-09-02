@@ -16,4 +16,13 @@ actual = hashlib.sha256(source).hexdigest()
 if actual != expected:
     raise RuntimeError(f"Validation payload checksum mismatch: {actual}")
 
-exec(compile(source, "lrc_m1_validation_full.py", "exec"), globals())
+text = source.decode("utf-8")
+text = text.replace(
+    'times=df["DateTime"].astype("int64").to_numpy(),',
+    'times=df["DateTime"].to_numpy(dtype="datetime64[ns]").astype("int64"),',
+)
+text = text.replace(
+    'mark30 = pd.date_range(start, extension_end, freq="30min", inclusive="left").astype("int64").to_numpy()',
+    'mark30 = pd.date_range(start, extension_end, freq="30min", inclusive="left").to_numpy(dtype="datetime64[ns]").astype("int64")',
+)
+exec(compile(text, "lrc_m1_validation_full.py", "exec"), globals())
