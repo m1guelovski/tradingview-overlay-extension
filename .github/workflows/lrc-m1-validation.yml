@@ -29,16 +29,14 @@ jobs:
           path: research/cache/fxcm
           key: fxcm-public-m1-weekly-v1
       - name: Install dependencies
-        run: python -m pip install --upgrade pip pandas numpy requests xlsxwriter numba
-      - name: Run M1 validation
-        run: python research/lrc_m1_validation.py
-      - name: Upload results and diagnostics
+        run: python -m pip install --upgrade pip pandas numpy requests xlsxwriter
+      - name: Calibrate against 2026 execution window
+        run: python research/calibrate_2026.py
+      - name: Upload calibration
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lrc-m1-validation-results
-          path: |
-            research/output/**
-            research/cache/bundles_v2/**
+          name: lrc-2026-calibration
+          path: research/output2026/**
           if-no-files-found: warn
           retention-days: 3
