@@ -37,7 +37,8 @@ fast_expected = "b1ffcd319b31bfce2c64f953efcb75126467242066fd8c1a6dfa78103de2e4e
 fast_actual = hashlib.sha256(fast_source).hexdigest()
 if fast_actual != fast_expected:
     raise RuntimeError(f"Fast-generator checksum mismatch: {fast_actual}")
-exec(compile(fast_source, "fast_eventgen.py", "exec"), globals())
+fast_text = fast_source.decode("utf-8").replace("cache=True", "cache=False")
+exec(compile(fast_text, "fast_eventgen.py", "exec"), globals())
 
 def generate_candidate_events(data, year):
     return generate_candidate_events_fast(data, year, globals())
