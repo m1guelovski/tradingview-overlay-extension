@@ -11,6 +11,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PYTHONUNBUFFERED: '1'
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -20,14 +23,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Restore public M1 cache
+        uses: actions/cache@v4
+        with:
+          path: research/cache/fxcm
+          key: fxcm-public-m1-weekly-v1
       - name: Install dependencies
         run: python -m pip install --upgrade pip pandas numpy requests xlsxwriter
       - name: Run M1 validation
         run: python research/lrc_m1_validation.py
-      - name: Upload results
+      - name: Upload results and diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lrc-m1-validation-results
-          path: research/output/**
-          if-no-files-found: error
+          path: |
+            research/output/**
+            research/cache/bundles_v2/**
+          if-no-files-found: warn
           retention-days: 3
