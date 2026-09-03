@@ -6,7 +6,8 @@ on:
       - 'research/lrc-adverse-portfolio-20260903'
     paths:
       - 'research/family_search/sequential_portfolio_stage2.py'
-      - 'research/family_search/sequential_finalists_stage2.json'
+      - 'research/family_search/sequential_portfolio_stage2_payload/**'
+      - 'research/family_search/sequential_finalists_stage2_v2.json'
       - '.github/workflows/sequential-portfolio-stage2.yml'
   workflow_dispatch:
 
@@ -43,7 +44,7 @@ jobs:
           --cache-dir research/cache/fxcm
           --output-dir research/output_sequential_stage2/${{ matrix.year }}
           --swap-csv research/adverse/swap_rates_actual_2026.csv
-          --spec-json research/family_search/sequential_finalists_stage2.json
+          --spec-json research/family_search/sequential_finalists_stage2_v2.json
       - name: Upload year result
         if: always()
         uses: actions/upload-artifact@v4
