@@ -1,0 +1,354 @@
+[
+  {
+    "name": "baseline_current"
+  },
+  {
+    "name": "baseline_close_only",
+    "intrabar_failure_mode": 0
+  },
+  {
+    "name": "flat4000",
+    "cycle_flatten_dd": 4000.0
+  },
+  {
+    "name": "flat4250",
+    "cycle_flatten_dd": 4250.0
+  },
+  {
+    "name": "flat4500",
+    "cycle_flatten_dd": 4500.0
+  },
+  {
+    "name": "portfolio3250",
+    "portfolio_cut": 3250.0,
+    "portfolio_emergency": 3750.0
+  },
+  {
+    "name": "portfolio3750",
+    "portfolio_cut": 3750.0,
+    "portfolio_emergency": 4250.0
+  },
+  {
+    "name": "portfolio4000",
+    "portfolio_cut": 4000.0,
+    "portfolio_emergency": 4500.0
+  },
+  {
+    "name": "episode_one_cut",
+    "cut_cadence_mode": 1,
+    "second_round_same_day": false
+  },
+  {
+    "name": "newlow250",
+    "cut_cadence_mode": 2,
+    "cut_step": 250.0,
+    "max_episode_rounds": 6
+  },
+  {
+    "name": "newlow500",
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4
+  },
+  {
+    "name": "newlow750",
+    "cut_cadence_mode": 2,
+    "cut_step": 750.0,
+    "max_episode_rounds": 3
+  },
+  {
+    "name": "no_second_round",
+    "second_round_same_day": false
+  },
+  {
+    "name": "global_b6_initial",
+    "global_completion_mode": 1
+  },
+  {
+    "name": "global_b5b6_continue",
+    "global_completion_mode": 2
+  },
+  {
+    "name": "basket_initial_only",
+    "active_completion_mode": 1
+  },
+  {
+    "name": "basket_no_completion",
+    "active_completion_mode": 0
+  },
+  {
+    "name": "pair750",
+    "pair_stop": 750.0
+  },
+  {
+    "name": "pair1050",
+    "pair_stop": 1050.0
+  },
+  {
+    "name": "basket_tight",
+    "basket_block": 1800.0,
+    "basket_unlock": 1400.0,
+    "basket_cut": 2800.0
+  },
+  {
+    "name": "basket_loose",
+    "basket_block": 2200.0,
+    "basket_unlock": 1700.0,
+    "basket_cut": 3200.0
+  },
+  {
+    "name": "cut_b4first",
+    "cut_mode": 1
+  },
+  {
+    "name": "cut_until_relief",
+    "cut_mode": 2
+  },
+  {
+    "name": "heavy25_100_600",
+    "heavy_days": 25,
+    "heavy_positions": 100,
+    "heavy_target": 600.0
+  },
+  {
+    "name": "heavy30_120_600",
+    "heavy_days": 30,
+    "heavy_positions": 120,
+    "heavy_target": 600.0
+  },
+  {
+    "name": "heavy35_150_750",
+    "heavy_days": 35,
+    "heavy_positions": 150,
+    "heavy_target": 750.0
+  },
+  {
+    "name": "heavy45_150_750",
+    "heavy_days": 45,
+    "heavy_positions": 150,
+    "heavy_target": 750.0
+  },
+  {
+    "name": "heavy_no_discount",
+    "heavy_target": 1000.0
+  },
+  {
+    "name": "all001",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 1000.0
+  },
+  {
+    "name": "b4_02_b5_01_b6_01",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 1000.0
+  },
+  {
+    "name": "b4_01_b5_02_b6_01",
+    "units_b4": 1000.0,
+    "units_b5": 2000.0,
+    "units_b6": 1000.0
+  },
+  {
+    "name": "b4_01_b5_01_b6_02",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0
+  },
+  {
+    "name": "b4_02_b5_01_b6_02",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0
+  },
+  {
+    "name": "b4_01_b5_02_b6_02",
+    "units_b4": 1000.0,
+    "units_b5": 2000.0,
+    "units_b6": 2000.0
+  },
+  {
+    "name": "b4_02_b5_02_b6_01",
+    "units_b4": 2000.0,
+    "units_b5": 2000.0,
+    "units_b6": 1000.0
+  },
+  {
+    "name": "heavy80_half",
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "heavy100_half",
+    "heavy_positions": 100,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "heavy120_half",
+    "heavy_positions": 120,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "heavy100_075",
+    "heavy_positions": 100,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "dd1500_half",
+    "dd_reduce_start": 1500.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd2000_half",
+    "dd_reduce_start": 2000.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd2500_half",
+    "dd_reduce_start": 2500.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd3000_half",
+    "dd_reduce_start": 3000.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "exp20_30_half",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp25_35_half",
+    "basket_exposure_soft": 25.0,
+    "basket_exposure_hard": 35.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp30_45_half",
+    "basket_exposure_soft": 30.0,
+    "basket_exposure_hard": 45.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp20_nohard_half",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 1000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp25_nohard_half",
+    "basket_exposure_soft": 25.0,
+    "basket_exposure_hard": 1000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "tail_exp20_flat4250",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5,
+    "cycle_flatten_dd": 4250.0,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4
+  },
+  {
+    "name": "tail_exp25_flat4250",
+    "basket_exposure_soft": 25.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5,
+    "cycle_flatten_dd": 4250.0,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4
+  },
+  {
+    "name": "tail_heavy100_exp25",
+    "heavy_positions": 100,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 25.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5,
+    "cycle_flatten_dd": 4250.0,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4
+  },
+  {
+    "name": "tail_dd2000_exp25",
+    "dd_reduce_start": 2000.0,
+    "dd_units_factor": 0.5,
+    "basket_exposure_soft": 25.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5,
+    "cycle_flatten_dd": 4250.0,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4
+  },
+  {
+    "name": "momentum_exp30_flat4500",
+    "portfolio_cut": 3750.0,
+    "portfolio_emergency": 4250.0,
+    "basket_exposure_soft": 30.0,
+    "basket_exposure_hard": 50.0,
+    "exposure_units_factor": 0.5,
+    "cycle_flatten_dd": 4500.0,
+    "cut_cadence_mode": 2,
+    "cut_step": 750.0,
+    "max_episode_rounds": 3
+  },
+  {
+    "name": "rotation_b5_age3",
+    "rotation_mode": 1,
+    "rotation_age_days": 3,
+    "rotation_max_victims": 1
+  },
+  {
+    "name": "rotation_b5_age7",
+    "rotation_mode": 1,
+    "rotation_age_days": 7,
+    "rotation_max_victims": 1
+  },
+  {
+    "name": "rotation_b4_age7",
+    "rotation_mode": 2,
+    "rotation_age_days": 7,
+    "rotation_max_victims": 1
+  },
+  {
+    "name": "rotation_worst_age7",
+    "rotation_mode": 3,
+    "rotation_age_days": 7,
+    "rotation_max_victims": 1
+  },
+  {
+    "name": "rotation_oldest_age7",
+    "rotation_mode": 4,
+    "rotation_age_days": 7,
+    "rotation_max_victims": 1
+  },
+  {
+    "name": "reentry_age7",
+    "reentry_age_days": 7
+  },
+  {
+    "name": "reentry_age14",
+    "reentry_age_days": 14
+  },
+  {
+    "name": "reentry_cap3",
+    "max_reentries_per_candidate_setup": 3
+  },
+  {
+    "name": "reset_keep_active",
+    "reset_mode": 1
+  },
+  {
+    "name": "b7_one",
+    "include_b7": true,
+    "b7_slots": 1
+  }
+]
