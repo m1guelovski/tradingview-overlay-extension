@@ -1,4 +1,4 @@
-name: Temporary LRC Adverse Phase 2 Grid
+name: Temporary LRC Adverse Phase 3 Sizing
 
 on:
   pull_request:
@@ -35,20 +35,20 @@ jobs:
           key: fxcm-public-m1-weekly-v1
       - name: Install dependencies
         run: python -m pip install --upgrade pip pandas numpy requests numba pyarrow
-      - name: Run broad multi-pair M1 adverse grid
+      - name: Run targeted sizing and exposure grid
         run: >-
           python research/adverse/adverse_engine.py
           --year ${{ matrix.year }}
           --cache-dir research/cache/fxcm
-          --output-dir research/output_adverse_phase2/${{ matrix.year }}
+          --output-dir research/output_adverse_phase3/${{ matrix.year }}
           --swap-csv research/adverse/swap_rates_actual_2026.csv
-          --policy-json research/adverse/phase2_grid_policies.json
+          --policy-json research/adverse/phase3_policies.json
           --horizon-days 300
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lrc-adverse-phase2-grid-${{ matrix.year }}
-          path: research/output_adverse_phase2/${{ matrix.year }}/**
+          name: lrc-adverse-phase3-${{ matrix.year }}
+          path: research/output_adverse_phase3/${{ matrix.year }}/**
           if-no-files-found: warn
           retention-days: 7
