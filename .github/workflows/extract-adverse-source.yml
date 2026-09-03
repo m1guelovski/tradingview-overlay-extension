@@ -1,8 +1,9 @@
 name: Temporary Extract Adverse Source
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches:
+      - 'research/lrc-adverse-portfolio-20260903'
     paths:
       - '.github/workflows/extract-adverse-source.yml'
   workflow_dispatch:
