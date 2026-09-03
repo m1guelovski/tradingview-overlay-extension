@@ -1,0 +1,35 @@
+name: Temporary Inspect Sequential Stage 2 API
+
+on:
+  push:
+    branches:
+      - 'research/lrc-adverse-portfolio-20260903'
+    paths:
+      - 'research/family_search/inspect_stage2_cli.py'
+      - '.github/workflows/inspect-sequential-stage2-api.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/lrc-adverse-portfolio-20260903
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inspect recovered API
+        run: python research/family_search/inspect_stage2_cli.py
+      - name: Commit API metadata
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/results/stage2_api
+          git commit -m 'chore(research): publish recovered stage-two API' || exit 0
+          git push origin HEAD:research/lrc-adverse-portfolio-20260903
