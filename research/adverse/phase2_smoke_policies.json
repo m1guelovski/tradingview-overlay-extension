@@ -1,0 +1,12 @@
+[
+  {"name":"current_intrabar"},
+  {"name":"current_close_only","intrabar_failure_mode":0},
+  {"name":"episode_one_cut","cut_cadence_mode":1,"second_round_same_day":false},
+  {"name":"new_lows_500","cut_cadence_mode":2,"cut_step":500.0,"max_episode_rounds":4},
+  {"name":"all_001","units_b4":1000.0,"units_b5":1000.0,"units_b6":1000.0},
+  {"name":"deep_weighted","units_b4":1000.0,"units_b5":1000.0,"units_b6":2000.0},
+  {"name":"front_light","units_b4":1000.0,"units_b5":2000.0,"units_b6":2000.0},
+  {"name":"hard_flat_4250","cut_cadence_mode":2,"cut_step":500.0,"cycle_flatten_dd":4250.0},
+  {"name":"deep_newlow_flat","units_b4":1000.0,"units_b5":1000.0,"units_b6":2000.0,"cut_cadence_mode":2,"cut_step":500.0,"cycle_flatten_dd":4250.0},
+  {"name":"funded_rotation","rotation_mode":3,"rotation_age_days":7,"rotation_max_victims":1}
+]
