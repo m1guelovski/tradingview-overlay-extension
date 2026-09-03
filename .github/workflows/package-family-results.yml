@@ -1,0 +1,38 @@
+name: Temporary Package Family Results
+
+on:
+  push:
+    branches:
+      - 'research/lrc-adverse-portfolio-20260903'
+    paths:
+      - '.github/workflows/package-family-results.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/lrc-adverse-portfolio-20260903
+          fetch-depth: 1
+      - name: Create manifest
+        run: |
+          mkdir -p research/packaged
+          find research/results research/recovered -maxdepth 5 -type f -printf '%p\t%s\n' 2>/dev/null | sort > research/packaged/MANIFEST.tsv || true
+          git log -15 --oneline > research/packaged/COMMITS.txt
+          cp -r research/results/stage1_aggregate research/packaged/ 2>/dev/null || true
+          cp -r research/results/sequential_stage2_auto research/packaged/ 2>/dev/null || true
+          cp -r research/results/stage1_inventory research/packaged/ 2>/dev/null || true
+          cp -r research/results/stage2_api research/packaged/ 2>/dev/null || true
+          cp -r research/recovered research/packaged/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: family-results-package
+          path: research/packaged/**
+          if-no-files-found: error
+          retention-days: 5
