@@ -21,9 +21,9 @@ jobs:
           import base64, hashlib, zlib
           from pathlib import Path
           root = Path('research/adverse')
-          payload = ''.join((root / 'phase2_payload' / f'part{i}.txt').read_text().strip() for i in range(10))
+          payload = ''.join((root / 'phase2_payload' / f'part{i:02d}.txt').read_text().strip() for i in range(10))
           source = zlib.decompress(base64.b85decode(payload))
-          expected = 'cdad54e74c60e5478c02bd18b805816c3e9ea4d0785042a455371eff35402715'
+          expected = '48c648b93e945c114baa1625dfafd115759dab3439950145d794267c276c7c60'
           actual = hashlib.sha256(source).hexdigest()
           if actual != expected:
               raise RuntimeError((actual, expected))
