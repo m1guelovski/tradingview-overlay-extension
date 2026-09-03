@@ -1,0 +1,557 @@
+[
+  {
+    "name": "baseline_current"
+  },
+  {
+    "name": "count30_factor50",
+    "heavy_positions": 30,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count30_factor75",
+    "heavy_positions": 30,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "count40_factor50",
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count40_factor75",
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "count50_factor50",
+    "heavy_positions": 50,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count50_factor75",
+    "heavy_positions": 50,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "count60_factor50",
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count60_factor75",
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "count70_factor50",
+    "heavy_positions": 70,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count70_factor75",
+    "heavy_positions": 70,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "count80_factor50",
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count80_factor75",
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "count100_factor50",
+    "heavy_positions": 100,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "count100_factor75",
+    "heavy_positions": 100,
+    "heavy_units_factor": 0.75
+  },
+  {
+    "name": "dd500_factor50",
+    "dd_reduce_start": 500.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd500_factor75",
+    "dd_reduce_start": 500.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "dd750_factor50",
+    "dd_reduce_start": 750.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd750_factor75",
+    "dd_reduce_start": 750.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "dd1000_factor50",
+    "dd_reduce_start": 1000.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd1000_factor75",
+    "dd_reduce_start": 1000.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "dd1250_factor50",
+    "dd_reduce_start": 1250.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd1250_factor75",
+    "dd_reduce_start": 1250.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "dd1500_factor50",
+    "dd_reduce_start": 1500.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd1500_factor75",
+    "dd_reduce_start": 1500.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "dd1750_factor50",
+    "dd_reduce_start": 1750.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd1750_factor75",
+    "dd_reduce_start": 1750.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "dd2000_factor50",
+    "dd_reduce_start": 2000.0,
+    "dd_units_factor": 0.5
+  },
+  {
+    "name": "dd2000_factor75",
+    "dd_reduce_start": 2000.0,
+    "dd_units_factor": 0.75
+  },
+  {
+    "name": "exp8_16_factor50",
+    "basket_exposure_soft": 8.0,
+    "basket_exposure_hard": 16.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp8_16_factor75",
+    "basket_exposure_soft": 8.0,
+    "basket_exposure_hard": 16.0,
+    "exposure_units_factor": 0.75
+  },
+  {
+    "name": "exp10_20_factor50",
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp10_20_factor75",
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.75
+  },
+  {
+    "name": "exp12_24_factor50",
+    "basket_exposure_soft": 12.0,
+    "basket_exposure_hard": 24.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp12_24_factor75",
+    "basket_exposure_soft": 12.0,
+    "basket_exposure_hard": 24.0,
+    "exposure_units_factor": 0.75
+  },
+  {
+    "name": "exp15_30_factor50",
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp15_30_factor75",
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.75
+  },
+  {
+    "name": "exp18_36_factor50",
+    "basket_exposure_soft": 18.0,
+    "basket_exposure_hard": 36.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp18_36_factor75",
+    "basket_exposure_soft": 18.0,
+    "basket_exposure_hard": 36.0,
+    "exposure_units_factor": 0.75
+  },
+  {
+    "name": "exp20_40_factor50",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "exp20_40_factor75",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.75
+  },
+  {
+    "name": "expcap16",
+    "basket_exposure_hard": 16.0
+  },
+  {
+    "name": "expcap20",
+    "basket_exposure_hard": 20.0
+  },
+  {
+    "name": "expcap24",
+    "basket_exposure_hard": 24.0
+  },
+  {
+    "name": "expcap30",
+    "basket_exposure_hard": 30.0
+  },
+  {
+    "name": "expcap36",
+    "basket_exposure_hard": 36.0
+  },
+  {
+    "name": "expcap40",
+    "basket_exposure_hard": 40.0
+  },
+  {
+    "name": "expsoft8_half",
+    "basket_exposure_soft": 8.0,
+    "basket_exposure_hard": 1000000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "expsoft10_half",
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 1000000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "expsoft12_half",
+    "basket_exposure_soft": 12.0,
+    "basket_exposure_hard": 1000000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "expsoft15_half",
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 1000000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "expsoft18_half",
+    "basket_exposure_soft": 18.0,
+    "basket_exposure_hard": 1000000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "expsoft20_half",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 1000000000000.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count40_exp10_20",
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count40_exp15_30",
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count40_exp20_40",
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count60_exp10_20",
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count60_exp15_30",
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count60_exp20_40",
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count80_exp10_20",
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count80_exp15_30",
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "count80_exp20_40",
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5,
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "deep_static",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0
+  },
+  {
+    "name": "b5_half_static",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0
+  },
+  {
+    "name": "deep_exp8_16",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 8.0,
+    "basket_exposure_hard": 16.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "b5half_exp8_16",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 8.0,
+    "basket_exposure_hard": 16.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "deep_exp10_20",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "b5half_exp10_20",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "deep_exp12_24",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 12.0,
+    "basket_exposure_hard": 24.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "b5half_exp12_24",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 12.0,
+    "basket_exposure_hard": 24.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "deep_exp15_30",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "b5half_exp15_30",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "deep_exp20_40",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "b5half_exp20_40",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5
+  },
+  {
+    "name": "deep_count40",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "b5half_count40",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "heavy_positions": 40,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "deep_count60",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "b5half_count60",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "heavy_positions": 60,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "deep_count80",
+    "units_b4": 1000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "b5half_count80",
+    "units_b4": 2000.0,
+    "units_b5": 1000.0,
+    "units_b6": 2000.0,
+    "heavy_positions": 80,
+    "heavy_units_factor": 0.5
+  },
+  {
+    "name": "basket1000_softHalf",
+    "basket_block": 1000.0,
+    "basket_unlock": 750.0,
+    "basket_cut": 2500.0,
+    "soft_basket_units_factor": 0.5
+  },
+  {
+    "name": "basket1250_softHalf",
+    "basket_block": 1250.0,
+    "basket_unlock": 1000.0,
+    "basket_cut": 2750.0,
+    "soft_basket_units_factor": 0.5
+  },
+  {
+    "name": "basket1500_softHalf",
+    "basket_block": 1500.0,
+    "basket_unlock": 1200.0,
+    "basket_cut": 3000.0,
+    "soft_basket_units_factor": 0.5
+  },
+  {
+    "name": "basket1750_softHalf",
+    "basket_block": 1750.0,
+    "basket_unlock": 1400.0,
+    "basket_cut": 3000.0,
+    "soft_basket_units_factor": 0.5
+  },
+  {
+    "name": "exp10_20_newlow_flat",
+    "basket_exposure_soft": 10.0,
+    "basket_exposure_hard": 20.0,
+    "exposure_units_factor": 0.5,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4,
+    "cycle_flatten_dd": 4250.0
+  },
+  {
+    "name": "exp15_30_newlow_flat",
+    "basket_exposure_soft": 15.0,
+    "basket_exposure_hard": 30.0,
+    "exposure_units_factor": 0.5,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4,
+    "cycle_flatten_dd": 4250.0
+  },
+  {
+    "name": "exp20_40_newlow_flat",
+    "basket_exposure_soft": 20.0,
+    "basket_exposure_hard": 40.0,
+    "exposure_units_factor": 0.5,
+    "cut_cadence_mode": 2,
+    "cut_step": 500.0,
+    "max_episode_rounds": 4,
+    "cycle_flatten_dd": 4250.0
+  }
+]
