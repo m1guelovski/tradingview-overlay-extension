@@ -1,0 +1,35 @@
+name: Temporary Extract Adverse Source
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/extract-adverse-source.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decompress embedded source
+        run: |
+          python - <<'PY'
+          import base64, zlib
+          from pathlib import Path
+          root = Path('research/adverse')
+          payload = ''.join((root / 'payload' / f'part{i}.txt').read_text().strip() for i in range(5))
+          source = zlib.decompress(base64.b85decode(payload))
+          out = Path('research/extracted')
+          out.mkdir(parents=True, exist_ok=True)
+          (out / 'adverse_engine_full.py').write_bytes(source)
+          print(len(source))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adverse-engine-source
+          path: research/extracted/adverse_engine_full.py
+          retention-days: 3
