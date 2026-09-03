@@ -15,21 +15,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decompress embedded source
+      - name: Decompress embedded phase-two source
         run: |
           python - <<'PY'
-          import base64, zlib
+          import base64, hashlib, zlib
           from pathlib import Path
           root = Path('research/adverse')
-          payload = ''.join((root / 'payload' / f'part{i}.txt').read_text().strip() for i in range(5))
+          payload = ''.join((root / 'phase2_payload' / f'part{i}.txt').read_text().strip() for i in range(10))
           source = zlib.decompress(base64.b85decode(payload))
+          expected = 'cdad54e74c60e5478c02bd18b805816c3e9ea4d0785042a455371eff35402715'
+          actual = hashlib.sha256(source).hexdigest()
+          if actual != expected:
+              raise RuntimeError((actual, expected))
           out = Path('research/extracted')
           out.mkdir(parents=True, exist_ok=True)
-          (out / 'adverse_engine_full.py').write_bytes(source)
-          print(len(source))
+          (out / 'adverse_engine_phase2.py').write_bytes(source)
+          print(len(source), actual)
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: adverse-engine-source
-          path: research/extracted/adverse_engine_full.py
+          name: adverse-engine-phase2-source
+          path: research/extracted/adverse_engine_phase2.py
           retention-days: 3
