@@ -1,4 +1,4 @@
-name: Temporary LRC Adverse Smoke
+name: Temporary LRC Adverse Phase 1
 
 on:
   pull_request:
@@ -15,7 +15,12 @@ env:
   PYTHONUNBUFFERED: '1'
 
 jobs:
-  smoke:
+  validate:
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        year: [2012, 2015, 2016, 2017, 2018, 2020, 2022, 2024]
     runs-on: ubuntu-latest
     timeout-minutes: 355
     steps:
@@ -30,19 +35,19 @@ jobs:
           key: fxcm-public-m1-weekly-v1
       - name: Install dependencies
         run: python -m pip install --upgrade pip pandas numpy requests numba pyarrow
-      - name: Run adverse smoke test
+      - name: Run multi-pair M1 adverse validation
         run: >-
           python research/adverse/adverse_engine.py
-          --year 2020
+          --year ${{ matrix.year }}
           --cache-dir research/cache/fxcm
-          --output-dir research/output_adverse/2020
+          --output-dir research/output_adverse/${{ matrix.year }}
           --swap-csv research/adverse/swap_rates_actual_2026.csv
-          --policy-json research/adverse/smoke_policies.json
-      - name: Upload smoke results
+          --policy-json research/adverse/phase1_policies.json
+      - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lrc-adverse-smoke
-          path: research/output_adverse/**
+          name: lrc-adverse-phase1-${{ matrix.year }}
+          path: research/output_adverse/${{ matrix.year }}/**
           if-no-files-found: warn
-          retention-days: 5
+          retention-days: 7
