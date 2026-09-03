@@ -1,0 +1,46 @@
+[
+  {"name":"baseline_3500"},
+  {"name":"portfolio_3250","portfolio_cut":3250.0,"portfolio_emergency":3750.0},
+  {"name":"portfolio_3750","portfolio_cut":3750.0,"portfolio_emergency":4250.0},
+  {"name":"portfolio_4000","portfolio_cut":4000.0,"portfolio_emergency":4500.0},
+  {"name":"portfolio_3500_one_round","second_round_same_day":false},
+  {"name":"portfolio_3750_one_round","portfolio_cut":3750.0,"portfolio_emergency":4250.0,"second_round_same_day":false},
+
+  {"name":"basket_tight","basket_block":1800.0,"basket_unlock":1400.0,"basket_cut":2800.0},
+  {"name":"basket_loose","basket_block":2200.0,"basket_unlock":1700.0,"basket_cut":3200.0},
+  {"name":"basket_active_initial_only","active_completion_mode":1},
+  {"name":"basket_no_completion","active_completion_mode":0},
+
+  {"name":"global_b6_initial_only","global_completion_mode":1},
+  {"name":"global_b5_b6_continue","global_completion_mode":2},
+
+  {"name":"cut_b4_first","cut_mode":1},
+  {"name":"cut_until_relief","cut_mode":2},
+
+  {"name":"rotation_selective","rotation_mode":1},
+  {"name":"rotation_full_age7","rotation_mode":2,"rotation_age_days":7},
+  {"name":"rotation_full_age14","rotation_mode":2,"rotation_age_days":14},
+
+  {"name":"reentry_age7","reentry_age_days":7},
+  {"name":"reentry_age14","reentry_age_days":14},
+  {"name":"reentry_age21","reentry_age_days":21},
+  {"name":"reentry_cap3","max_reentries_per_candidate_setup":3},
+  {"name":"reentry_cap5","max_reentries_per_candidate_setup":5},
+
+  {"name":"heavy_25d_120_600","heavy_days":25,"heavy_positions":120,"heavy_target":600.0},
+  {"name":"heavy_30d_120_600","heavy_days":30,"heavy_positions":120,"heavy_target":600.0},
+  {"name":"heavy_30d_150_750","heavy_days":30,"heavy_positions":150,"heavy_target":750.0},
+  {"name":"heavy_35d_150_750","heavy_days":35,"heavy_positions":150,"heavy_target":750.0},
+  {"name":"heavy_no_discount","heavy_days":30,"heavy_positions":120,"heavy_target":1000.0},
+
+  {"name":"pair_stop750","pair_stop":750.0},
+  {"name":"pair_stop1050","pair_stop":1050.0},
+  {"name":"b7_one","include_b7":true,"b7_slots":1},
+  {"name":"reset_keep_active","reset_mode":1},
+
+  {"name":"combined_3750_b4first_one_round","portfolio_cut":3750.0,"portfolio_emergency":4250.0,"cut_mode":1,"second_round_same_day":false},
+  {"name":"combined_3750_reentry14","portfolio_cut":3750.0,"portfolio_emergency":4250.0,"reentry_age_days":14},
+  {"name":"combined_3750_selective_rotation","portfolio_cut":3750.0,"portfolio_emergency":4250.0,"rotation_mode":1},
+  {"name":"combined_momentum","portfolio_cut":3750.0,"portfolio_emergency":4250.0,"basket_block":2200.0,"basket_unlock":1700.0,"basket_cut":3200.0,"active_completion_mode":2,"global_completion_mode":2},
+  {"name":"combined_defensive","portfolio_cut":3500.0,"portfolio_emergency":4000.0,"basket_block":1800.0,"basket_unlock":1400.0,"basket_cut":2800.0,"active_completion_mode":1,"global_completion_mode":0,"reentry_age_days":14,"second_round_same_day":false,"cut_mode":1}
+]
