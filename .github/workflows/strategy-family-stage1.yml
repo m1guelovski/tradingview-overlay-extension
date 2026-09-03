@@ -37,7 +37,7 @@ jobs:
         run: python -m pip install --upgrade pip pandas numpy requests numba pyarrow
       - name: Screen sequential strategy families
         run: >-
-          python research/family_search/strategy_family_stage1.py
+          python research/family_search/strategy_family_stage1_patch.py
           --year ${{ matrix.year }}
           --cache-dir research/cache/fxcm
           --output-dir research/output_family_stage1/${{ matrix.year }}
