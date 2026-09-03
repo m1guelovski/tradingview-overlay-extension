@@ -1,0 +1,8 @@
+[
+  {"name":"baseline_3500"},
+  {"name":"portfolio_3750","portfolio_cut":3750.0,"portfolio_emergency":4250.0},
+  {"name":"active_initial_only","active_completion_mode":1},
+  {"name":"no_active_completion","active_completion_mode":0},
+  {"name":"selective_rotation","rotation_mode":1},
+  {"name":"reentry_age_14","reentry_age_days":14}
+]
